@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es6",
+    "target": "es5",
     "noImplicitAny": false,
     "sourceMap": true,
     "allowJs": true,
-    "rootDir":"./src",
-    "outDir": "./bin"
+    "rootDir": "./src",
+    "outDir": "./bin",
+    "moduleResolution": "node",
+    "pretty": true
   },
   "exclude": [
     "node_modules"
