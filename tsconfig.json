@@ -5,12 +5,13 @@
     "noImplicitAny": false,
     "sourceMap": true,
     "allowJs": true,
-    "rootDir": "./src",
+    "rootDir": ".",
     "outDir": "./bin",
     "moduleResolution": "node",
     "pretty": true
   },
   "exclude": [
+    "bin",
     "node_modules"
   ]
 }

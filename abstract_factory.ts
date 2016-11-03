@@ -1,6 +1,9 @@
 /**
  * Abstract Factory 
+ * 
  * 抽象工厂模式
+ * 
+ * 提供统一的创建接口
  */
 
 namespace abstract_factory {
