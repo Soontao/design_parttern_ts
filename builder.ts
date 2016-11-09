@@ -1,9 +1,8 @@
 /**
  * Builder 模式
  * 
- * Builder和抽象工厂看似区别不大，实质没有任何相似之处
- * 前者在于配置最后返回的对象，后者在于提供一个工厂的通用接口
- */
+ * Builder模式偏向于，提供构建过程的接口
+6 */
 
 namespace builder {
   // namespace start
