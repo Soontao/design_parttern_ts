@@ -27,9 +27,9 @@ namespace singleton {
 
         private name: String;
 
-        private systemVer: Number = 0; moshi
+        private systemVer: Number = 0;
 
-        into(): String {
+        public into(): String {
             return `name is: ${this.name}\nstorage is: ${this.systemVer}`
         }
 
@@ -37,7 +37,7 @@ namespace singleton {
 
         private static instance: System;
 
-        static Instance() {
+        public static Instance() {
             if (!this.instance)
                 // 如果实例不存在，创建它
                 this.instance = new System("singleton system", 1);
@@ -55,3 +55,10 @@ namespace singleton {
 
     // namespace end
 }
+
+/**
+ * Output
+ * 
+ * name is: singleton system
+ * storage is: 1
+ */
