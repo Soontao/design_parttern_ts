@@ -29,7 +29,7 @@ namespace singleton {
 
         private systemVer: Number = 0;
 
-        public into(): String {
+        public info(): String {
             return `name is: ${this.name}\nstorage is: ${this.systemVer}`
         }
 
@@ -50,7 +50,7 @@ namespace singleton {
 
 
     // 测试一下
-    console.log(System.Instance().into())
+    console.log(System.Instance().info())
 
 
     // namespace end
