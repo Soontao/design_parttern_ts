@@ -14,3 +14,4 @@
 
 * [单例模式](singleton.ts)
 
+* [适配器模式](adapter.ts)

@@ -4,55 +4,42 @@
  * 装饰器模式
  * 用于适配已有的类，用以协同工作
  * 
- * 这是一个不完全的理解，待修改
+ * 有一个已存在的类，有一个新的接口
+ * 适配器继承已有的类，实现新的接口
  * 
  */
 
 namespace adapter {
     // namespace start
 
-    class Apple {
+    interface IPower {
 
-        getName() {
-            return "apple-fdsjkalf"
+    }
+
+    class Power implements IPower {
+
+    }
+
+    interface IPowerStation {
+        getPower(uid: string, voltage: number): IPower;
+    }
+
+
+    class LocalPowerStation {
+        getPowerFromLocal(localuid: string) {
+            return new Power();
         }
+    }
 
-        getWeight() {
-            return 1.2
+    class PowerStationAdapter extends LocalPowerStation implements IPowerStation {
+
+        getPower(uid, voltage) {
+            return this.getPowerFromLocal(uid);
         }
 
     }
 
-    class Peer {
 
-        getName() {
-            return "peer-fdjskal"
-        }
-
-        getDesity() {
-            return 0.2
-        }
-
-        getVolumn() {
-            return 6
-        }get
-
-
-    }
-
-    class PeerAdapter extends Peer {
-
-        getWeight() {
-            return this.getVolumn() * this.getWeight();
-        }
-
-    }
-
-    let apple: Apple = new Apple();
-    let peer: PeerAdapter = new PeerAdapter();
-
-    console.log(apple.getWeight());
-    console.log(peer.getWeight());
 
 
 
