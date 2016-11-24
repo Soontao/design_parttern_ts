@@ -2,7 +2,10 @@
  * Builder 模式
  * 
  * Builder模式偏向于，提供构建过程的接口
-6 */
+ * 
+ * 提供对于构造器的封装
+ * 
+ */
 
 namespace builder {
   // namespace start
