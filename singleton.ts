@@ -20,7 +20,9 @@ namespace singleton {
      */
     class System {
 
-        constructor(name, ver) {
+        // You have to make sure the constructor is private
+
+        private constructor(name, ver) {
             this.name = name;
             this.systemVer = ver;
         }
@@ -51,7 +53,6 @@ namespace singleton {
 
     // 测试一下
     console.log(System.Instance().info())
-
 
     // namespace end
 }

@@ -1,25 +1,14 @@
 /**
  * Builder 模式
  * 
- * Builder模式偏向于，提供构建过程的接口
+ * Builder用于封装构建过程
  * 
- * 提供对于构造器的封装
  * 
  */
 
-namespace builder {
+namespace build {
   // namespace start
 
-  interface FruitBuilder {
-
-    sowing();
-
-    grow();
-
-    harvest();
-
-    getFruit(): Fruit;
-  }
 
   /**
    * 水果
@@ -31,10 +20,11 @@ namespace builder {
 
   class Apple implements Fruit {
     fruitType = "apple";
-    fruitMaturity: 0;
+    fruitMaturity = 0;
   }
 
-  class AppleBuilder implements FruitBuilder {
+  class FruitTree {
+
     private fruit: Fruit;
     constructor(fruit: Fruit) {
       this.fruit = fruit;
@@ -53,36 +43,44 @@ namespace builder {
     }
   }
 
-  class Person {
+  class FruitBuilder {
     /**
      * 种植水果
      */
-    plant_fruit(builder: FruitBuilder) {
-      builder.sowing();
-      builder.grow();
-      builder.harvest();
+    plant_fruit() {
+      const tree = new FruitTree(new Apple());
+      tree.sowing();
+      tree.grow();
+      tree.harvest();
+      return tree
     }
 
     /**
      * 种植更好的水果
      */
-    plant_pretty_fruit(builder: FruitBuilder) {
-      builder.sowing();
-      builder.grow();
-      builder.grow();
-      builder.grow();
-      builder.harvest();
+    plant_pretty_fruit() {
+      const tree = new FruitTree(new Apple());
+      tree.sowing();
+      tree.grow();
+      tree.grow();
+      tree.grow();
+      tree.harvest();
+      return tree
     }
 
   }
 
-  const person = new Person();
-  const appleTree = new AppleBuilder(new Apple());
-  const anotherAppleTree = new AppleBuilder(new Apple());
-  person.plant_fruit(appleTree);
-  person.plant_pretty_fruit(anotherAppleTree);
-  console.log(appleTree.getFruit());
-  console.log(anotherAppleTree.getFruit());
+  const builder = new FruitBuilder();
+  console.log(builder.plant_fruit());
+  console.log(builder.plant_pretty_fruit());
   // namespace end
 }
 
+/**
+ * Output
+ * 
+ * FruitTree { fruit: Apple { fruitType: 'apple', fruitMaturity: 6 } }
+ * FruitTree { fruit: Apple { fruitType: 'apple', fruitMaturity: 10 } }
+ * 
+ * 
+ */

@@ -3,15 +3,33 @@
  * 
  * 抽象工厂模式
  * 
- * 提供统一的创建接口
+ * 创建工厂，提供统一的创建接口
+ * 
+ * 不是标准的抽象工厂，使用接口来抽象
+ * 
+ * 重要的是创造一个生产工厂的工厂
  */
 
 namespace abstract_factory {
-  /**
-   * 水果工厂
-   */
-  interface IFruitFactory {
-    makeFruit(): IFruit;
+
+  interface IFactory {
+    makeFruit(fruitName: string): IFruit;
+    makeShape(shapeName: string, shapeNum: number): Array<IShape>;
+  }
+
+
+
+  class FactoryOfFactory {
+    getFactoryOf(productsType: string): IFactory {
+      switch (productsType) {
+        case "fruit":
+          return new FruitFactory();
+        case "shape":
+          return new ShapeFactory();
+        default:
+          break;
+      }
+    }
   }
 
   /**
@@ -22,8 +40,9 @@ namespace abstract_factory {
   }
 
   class Apple implements IFruit {
+    fruitName = "apple";
     getFruitName() {
-      return "Apple";
+      return this.fruitName;
     }
   }
 
@@ -33,34 +52,65 @@ namespace abstract_factory {
     }
   }
 
-  class AppleFactory implements IFruitFactory {
-    makeFruit(): IFruit {
-      return new Apple();
+
+  interface IShape {
+    getShapeName(): string;
+  }
+
+  class Square implements IShape {
+    shapeName = "square";
+    getShapeName() {
+      return this.shapeName;
     }
   }
 
-  class PineAppleFactory implements IFruitFactory {
-    makeFruit(): IFruit {
-      return new PineApple();
-    }
-  }
-
-  class Person {
+  class FruitFactory implements IFactory {
     /**
-     * 找到一个工厂，
-     * 让工厂生产一个水果，
-     * 吃掉它
+     * makeFruit
      */
-    eatFruitFrom(fruitFac: IFruitFactory) {
-      const fruit: IFruit = fruitFac.makeFruit();
-      console.log('eat:' + fruit.getFruitName());
+    public makeFruit(fruitName): IFruit {
+      switch (fruitName) {
+        case "apple":
+          return new Apple();
+        case "pineapple":
+          return new PineApple();
+        default:
+          return null;
+      }
+    }
+
+    public makeShape(shapeName, shapeNum) {
+      return null;
+    }
+  }
+  class ShapeFactory implements IFactory {
+    /**
+     * makeFruit
+     */
+    public makeFruit(fruitName): IFruit {
+      return null;
+    }
+
+    public makeShape(shapeName, shapeNum): Array<IShape> {
+      switch (shapeName) {
+        case 'square':
+          const arr = new Array<IShape>();
+          for (let i = 0; i < shapeNum; i++) {
+            arr.push(new Square())
+          }
+          return arr;
+        default:
+          return null;
+      }
     }
   }
 
-  const factory1: IFruitFactory = new PineAppleFactory();
-  const factory2: IFruitFactory = new AppleFactory();
-  const person = new Person();
+  const factory_of_factory = new FactoryOfFactory();
 
-  person.eatFruitFrom(factory1);
-  person.eatFruitFrom(factory2);
+  const factory1: FruitFactory = factory_of_factory.getFactoryOf('fruit');
+  const factory2: ShapeFactory = factory_of_factory.getFactoryOf('shape');
+
+  console.log(factory1.makeFruit('apple'));
+  console.log(factory2.makeShape('square', 10));
+
 }

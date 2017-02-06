@@ -2,9 +2,9 @@
 /**
  * 工厂方法
  * 
- * 将类的实例化延迟到一个方法。
+ * 将类的实例化延迟到工厂的方法，只需要给予类名或者相应指示物，即可返回对象
  * 
- * 接口，抽象类建模将会使用到。
+ * 对于Client来说，不用更换api，修改工厂类即可扩展
  * 
  * 适合原抽象类已经确定逻辑，但是依赖需要延后的情况。
  * 
@@ -17,7 +17,7 @@ namespace factory_method {
   abstract class IRobot {
     abstract say(): string;
   }
-
+  
   class ChinaRebot extends IRobot {
     say() {
       return "hello china";
