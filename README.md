@@ -17,3 +17,7 @@
 * [适配器模式](adapter.ts)
 
 * [桥接模式](bridge.ts)
+
+* [迭代器模式](iterator.ts)
+
+* [代理模式](proxy.ts)
